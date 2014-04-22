@@ -1,19 +1,10 @@
 CC=g++
-PROG=tree forest
-FNAME=wine.train
-PNAME=wine.test
-T=20
+FNAME=heart.train
+PNAME=heart.test
+T=50
 RM=rm -rf
 
-.PHONY: all run_tree run_forest predict_tree predict_forest clean
-
-all:$(PROG)
-
-tree: tree.cpp 
-	$(CC) ./tree.cpp -o tree
-
-forest: forest.cpp
-	$(CC) ./forest.cpp -o forest
+.PHONY: run_tree run_forest predict_tree predict_forest clean
 
 tree_pred.h: tree $(FNAME)
 	./tree $(FNAME)
@@ -34,5 +25,5 @@ predict_forest: forest_predictor.cpp forest_pred.h $(PNAME)
 	./forest_predictor $(PNAME) > ./forest_prediction.txt
 
 clean:
-	$(RM) $(PROG)
+	$(RM) tree_predictor forest_predictor tree_pred.h forest_pred.h
 

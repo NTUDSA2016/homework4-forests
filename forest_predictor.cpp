@@ -1,19 +1,22 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
 #include <fstream>
 #include <vector>
+
 #include "forest_pred.h"
+
+using namespace std;
 
 using std::string;
 
+#define MAX_FEATURE (1024+1)
+
 int main(int argc,char** argv) {
-	int correct = 0;
+  int correct = 0;
   int total = 0;
   
-  std::vector<int> feature_id;
-  std::vector<double> feature_value;
-  int* id_array = NULL;
-  double* value_array = NULL;
+  double* features = new double[MAX_FEATURE];
 
   std::ifstream fin;
   string istring;
@@ -23,38 +26,27 @@ int main(int argc,char** argv) {
     total++;
     char *cstring, *tmp;
     int label;
-    
+    memset(features, 0, sizeof(double) * MAX_FEATURE);
+
     cstring = new char[istring.size() + 1];
     strncpy(cstring, istring.c_str(), istring.size()+1);
 
     tmp =  strtok(cstring, ": ");
     label = atoi(tmp);
-    feature_id.clear();
-    feature_value.clear();
     tmp = strtok(NULL, ": ");
 
     while(tmp != NULL) {
       int id = atoi(tmp);
-      feature_id.push_back(id);
       tmp = strtok(NULL, ": ");
-      feature_value.push_back(atof(tmp));
+      features[id] = atof(tmp);
       tmp = strtok(NULL, ": ");
     }
 
     delete[] cstring;
-    
-    id_array = new int[feature_id.size()];
-    value_array = new double[feature_value.size()];
-    
-    for (unsigned i = 0; i < feature_id.size(); i++) {
-      id_array[i] = feature_id[i];
-      value_array[i] = feature_value[i];
-    }
-    int prediction = forest_predict(id_array, value_array, feature_id.size());
-    delete[] id_array;
-    delete[] value_array;
+
+    int prediction = forest_predict(features);
     if (prediction == label) correct++;
   }
- 
-	printf("Accuracy: %d/%d = %lf%%\n", correct, total, correct*100.0/total);
+  printf("Accuracy: %d/%d = %lf%%\n", correct, total, correct*100.0/total);
+  delete[] features;
 }
