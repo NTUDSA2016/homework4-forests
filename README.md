@@ -31,7 +31,7 @@ Usage of the `Makefile.ta`:
 
 You can play around with different `FNAME`, `PNAME` and `T`.
 
-We provide two sample data, heart and a1a. The heart data set describes diagnosing of cardiac Single Proton Emission Computed Tomography (SPECT) images. The label means two catogories of patients : normal and adnormal. The features are
+We provide two sample data, heart and a1a. The heart data set describes diagnosing of cardiac Single Proton Emission Computed Tomography (SPECT) images. The label means two catogories of patients : normal and abnormal. The features are
 1. F1R: continuous (count in ROI (region of interest) 1 in rest)
 2. F1S: continuous (count in ROI 1 in stress)
 3. F2R: continuous (count in ROI 2 in rest)
