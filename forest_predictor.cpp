@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-#include "forest_pred.h"
+int forest_predict(double *attr);
 
 using namespace std;
 

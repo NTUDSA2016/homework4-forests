@@ -4,7 +4,7 @@
 #include <fstream>
 #include <vector>
 
-#include "tree_pred.h"
+int tree_predict(double *attr);
 
 using namespace std;
 
