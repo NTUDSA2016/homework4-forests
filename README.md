@@ -13,9 +13,9 @@ For example,
 
 Usage of the `Makefile.ta`:
 
-1. `make run_tree FNAME=heart.train`: 
+1. `make run_tree FNAME=heart.train EPSILON=0.1`: 
 
-   run the decision tree on data `heart.train`.
+   run the decision tree on data `heart.train` with epsilon=0.1.
 
 2. `make run_forest FNAME=heart.train T=30`:
 
