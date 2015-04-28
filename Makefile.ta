@@ -1,18 +1,19 @@
 CC=g++
 FNAME=heart.train
 PNAME=heart.test
+EPSILON=0.05
 T=50
 RM=rm -rf
 
 .PHONY: run_tree run_forest predict_tree predict_forest clean
 
 tree_pred.h: tree $(FNAME)
-	./tree $(FNAME)
+	./tree $(FNAME) $(EPSILON) > $@
 
 run_tree: tree_pred.h
 
 forest_pred.h: forest $(FNAME)
-	./forest $(FNAME) $(T)
+	./forest $(FNAME) $(T) > $@
 
 run_forest: forest_pred.h
 
