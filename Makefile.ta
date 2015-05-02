@@ -17,9 +17,13 @@ predict_tree: tree_predictor.cpp tree_pred_func.cpp $(PNAME)
 	$(CC) tree_predictor.cpp tree_pred_func.cpp -o tree_predictor
 	./tree_predictor $(PNAME) > ./tree_prediction.txt
 
+run_tree: predict_tree
+
 predict_forest: forest_predictor.cpp forest_pred_func.cpp $(PNAME)
 	$(CC) forest_predictor.cpp forest_pred_func.cpp -o forest_predictor
 	./forest_predictor $(PNAME) > ./forest_prediction.txt
+
+run_forest: predict_forest
 
 clean:
 	$(RM) tree_predictor forest_predictor tree_pred_func.cpp forest_pred_func.cpp
